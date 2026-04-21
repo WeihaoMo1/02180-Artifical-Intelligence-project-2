@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jIowRwtKqrQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\BeliefRevisionAssignment.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Weiha\\.nuget\\packages\\fsharp.core\\9.0.201\\fsharp.core.9.0.201.nupkg.sha512"
+  ],
+  "logs": []
+}

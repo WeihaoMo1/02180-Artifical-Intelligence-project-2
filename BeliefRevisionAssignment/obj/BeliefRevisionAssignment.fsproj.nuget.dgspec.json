@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\BeliefRevisionAssignment.fsproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\BeliefRevisionAssignment.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\BeliefRevisionAssignment.fsproj",
+        "projectName": "BeliefRevisionAssignment",
+        "projectPath": "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\BeliefRevisionAssignment.fsproj",
+        "packagesPath": "C:\\Users\\Weiha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Weiha\\Documents\\DTU sem.6\\02180 Introduction to Artificial Intelligence\\02180-Artifical-Intelligence-project-2\\BeliefRevisionAssignment\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Weiha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files\\dotnet\\sdk\\9.0.200\\FSharp\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[9.0.201, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
