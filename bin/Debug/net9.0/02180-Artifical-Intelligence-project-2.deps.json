@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "BeliefRevisionAssignment/1.0.0": {
+      "02180-Artifical-Intelligence-project-2/1.0.0": {
         "dependencies": {
           "FSharp.Core": "9.0.201"
         },
         "runtime": {
-          "BeliefRevisionAssignment.dll": {}
+          "02180-Artifical-Intelligence-project-2.dll": {}
         }
       },
       "FSharp.Core/9.0.201": {
@@ -66,7 +66,7 @@
     }
   },
   "libraries": {
-    "BeliefRevisionAssignment/1.0.0": {
+    "02180-Artifical-Intelligence-project-2/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
