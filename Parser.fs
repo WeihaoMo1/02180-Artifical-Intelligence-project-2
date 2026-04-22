@@ -9,6 +9,7 @@ type Token =
     | AND
     | OR
     | IMPLY
+    | BIIMPLY
     | LPAR
     | RPAR
 
@@ -23,6 +24,8 @@ let tokenize (s: string) =
             | '&' -> loop (i + 1) (AND :: acc)
             | '|' -> loop (i + 1) (OR :: acc)
             | '-' when i + 1 < s.Length && s.[i + 1] = '>' -> loop (i + 2) (IMPLY :: acc)
+            | '<' when i + 1 < s.Length && s.[i + 1] = '-' && i + 2 < s.Length && s.[i + 2] = '>' ->
+                loop (i + 3) (BIIMPLY :: acc)
             | '(' -> loop (i + 1) (LPAR :: acc)
             | ')' -> loop (i + 1) (RPAR :: acc)
             | c when System.Char.IsLetter c -> loop (i + 1) (VAR c :: acc)
@@ -30,7 +33,7 @@ let tokenize (s: string) =
 
     loop 0 []
 
-let parseFormula tokens =
+let parseTokens tokens =
     let rec expr toks =
         match toks with
         | VAR c :: rest -> Var c, rest
@@ -64,6 +67,13 @@ let parseFormula tokens =
                 | RPAR :: rest4 -> Imply(left, right), rest4
                 | _ -> failwith "Missing )"
 
+            | BIIMPLY :: rest2 ->
+                let right, rest3 = expr rest2
+
+                match rest3 with
+                | RPAR :: rest4 -> BiImply(left, right), rest4
+                | _ -> failwith "Missing )"
+
             | _ -> failwith "Expected operator"
 
         | _ -> failwith "Unexpected token"
@@ -74,6 +84,7 @@ let parseFormula tokens =
     | [] -> f
     | _ -> failwith "Extra tokens after parsing"
 
+let parseFormula s = tokenize s |> parseTokens
 
 let parseBeliefBase (s: string) : BeliefBase =
     let s = s.Trim()
@@ -86,6 +97,4 @@ let parseBeliefBase (s: string) : BeliefBase =
     if inner = "" then
         Set.empty
     else
-        inner.Split ','
-        |> Array.map (fun formulaStr -> tokenize formulaStr |> parseFormula)
-        |> Set.ofArray
+        inner.Split ',' |> Array.map (fun s -> parseFormula s) |> Set.ofArray
