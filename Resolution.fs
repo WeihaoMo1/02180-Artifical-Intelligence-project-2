@@ -8,9 +8,8 @@ type Literal =
     | Pos of char
     | Neg of char
 
-type Clause = Literal list
-
-type Clauses = Clause list
+type Clause = Set<Literal>
+type Clauses = Set<Clause>
 
 let rec splitAnd f =
     match f with
@@ -31,7 +30,9 @@ let rec toLiteral f =
 let toClauses f : Clauses =
     f
     |> splitAnd
-    |> List.map (fun cf -> cf |> splitOr |> List.map (fun l -> toLiteral l))
+    |> List.map (fun cf -> cf |> splitOr |> List.map toLiteral |> Set.ofList)
+    |> Set.ofList
+
 
 let complementary l1 l2 =
     match l1, l2 with
@@ -43,7 +44,7 @@ let resolve (c1: Clause) (c2: Clause) : Clause list =
     [ for l1 in c1 do
           for l2 in c2 do
               if complementary l1 l2 then
-                  let newClause = List.except [ l1 ] c1 @ List.except [ l2 ] c2 |> List.distinct
+                  let newClause = Set.remove l1 c1 |> Set.union (Set.remove l2 c2)
                   yield newClause ]
 
 let rec resolution (clauses: Clauses) =
@@ -52,11 +53,13 @@ let rec resolution (clauses: Clauses) =
               for c2 in clauses do
                   if c1 <> c2 then
                       yield! resolve c1 c2 ]
-        |> List.filter (fun c -> not (List.contains c clauses))
+        |> Set.ofList
+        |> Set.filter (fun c -> not (Set.contains c clauses))
 
-    if List.exists List.isEmpty newClauses then true
-    elif newClauses = [] then false
-    else resolution (clauses @ newClauses)
+    if Set.exists Set.isEmpty newClauses then true
+    elif Set.isEmpty newClauses then false
+    else resolution (Set.union clauses newClauses)
+
 
 let entails (kb: BeliefBase) f =
     let kbf = kb |> Set.toList |> List.reduce (fun acc f -> And(acc, f))
