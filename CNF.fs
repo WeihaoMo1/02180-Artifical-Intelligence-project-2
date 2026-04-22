@@ -1,0 +1,3 @@
+module CNF
+
+open Formula
