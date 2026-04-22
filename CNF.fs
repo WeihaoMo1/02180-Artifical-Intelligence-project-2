@@ -1,6 +1,7 @@
 module CNF
 
 open Formula
+open BeliefBase
 
 let rec eliminateBiImply f =
     match f with

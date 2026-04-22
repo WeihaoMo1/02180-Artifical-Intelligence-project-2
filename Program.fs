@@ -1,16 +1,17 @@
 ﻿open Parser
-open CNF
-open Formula
-open BeliefBase
+open Resolution
 
 [<EntryPoint>]
 let main argv =
     printf "Write a belief base: "
-    let input = System.Console.ReadLine()
+    let kbStr = System.Console.ReadLine()
 
-    let b = parseFormula input
-    let cnf = toCNF b
-    let s = toStringF cnf
+    printf "Write a formula: "
+    let fStr = System.Console.ReadLine()
 
-    printfn "The belief base is: %s" s
+    let kb = parseBeliefBase kbStr
+    let f = parseFormula fStr
+    let entails = entails kb f
+
+    printfn "entails: %b" entails
     0
