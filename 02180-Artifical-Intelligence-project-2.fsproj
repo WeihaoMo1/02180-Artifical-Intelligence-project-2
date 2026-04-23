@@ -12,6 +12,7 @@
     <Compile Include="CNF.fs" />
     <Compile Include="Resolution.fs" />
     <Compile Include="Parser.fs" />
+    <Compile Include="BeliefRevision.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

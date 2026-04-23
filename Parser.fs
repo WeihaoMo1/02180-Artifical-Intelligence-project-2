@@ -97,4 +97,18 @@ let parseBeliefBase (s: string) : BeliefBase =
     if inner = "" then
         Set.empty
     else
-        inner.Split ',' |> Array.map (fun s -> parseFormula s) |> Set.ofArray
+        inner.Split ','
+        |> Array.map (fun s ->
+            let parts = s.Split ':'
+
+            let mutable priority = 1
+
+            if parts.Length = 2 then
+                priority <- int parts.[1]
+            else if parts.Length > 2 then
+                failwith "Expected Formula : Priority"
+
+            let formula = parseFormula parts.[0]
+
+            formula, priority)
+        |> Set.ofArray
