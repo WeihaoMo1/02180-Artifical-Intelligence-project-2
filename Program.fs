@@ -20,22 +20,30 @@ let main argv =
         let opt = int (System.Console.ReadLine())
 
         let mutable f = null
+        let mutable p = 1
 
         if opt <> 5 then
             printf "Write a formula: "
             let fStr = System.Console.ReadLine()
-            f <- parseFormula fStr
+            let parts = (fStr.Trim()).Split ':'
+
+            if parts.Length = 2 then
+                p <- int parts.[1]
+            else if parts.Length > 2 then
+                failwith "Expected Formula : Priority"
+
+            f <- parseFormula parts.[0]
 
         let result =
             match opt with
             | 1 ->
-                kb <- revision kb f
+                kb <- revision kb (f, p)
                 toStringBB kb
             | 2 ->
                 kb <- contraction kb f
                 toStringBB kb
             | 3 ->
-                kb <- expansion kb f
+                kb <- expansion kb (f, p)
                 toStringBB kb
             | 4 ->
                 printfn "%s ⊨ %s" (toStringPrettyBB kb) (toStringF f)

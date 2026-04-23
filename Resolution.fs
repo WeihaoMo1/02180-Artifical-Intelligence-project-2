@@ -58,11 +58,14 @@ let rec resolution (clauses: Clauses) =
     else resolution (Set.union clauses newClauses)
 
 let entails (kb: BeliefBase) f =
-    let kbf = kb |> Set.map fst |> Set.toList |> List.reduce (fun acc f -> And(acc, f))
-    let kbcnf = toCNF kbf
-    let notfcnf = toCNF (Not f)
-    let cnfContradiction = And(kbcnf, notfcnf)
-    //printfn "cnf for contradiction: %s" (toStringF cnfContradiction)
-    let clauses = toClauses cnfContradiction
-    //printfn "clauses: %A" clauses
-    resolution clauses
+    if kb |> Set.isEmpty then
+        false
+    else
+        let kbf = kb |> Set.map fst |> Set.toList |> List.reduce (fun acc f -> And(acc, f))
+        let kbcnf = toCNF kbf
+        let notfcnf = toCNF (Not f)
+        let cnfContradiction = And(kbcnf, notfcnf)
+        //printfn "cnf for contradiction: %s" (toStringF cnfContradiction)
+        let clauses = toClauses cnfContradiction
+        //printfn "clauses: %A" clauses
+        resolution clauses
