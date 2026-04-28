@@ -86,7 +86,7 @@ Formula ::=
     | ( Formula <-> Formula )
 ```
 
-Where Var is a single single letter: A, B, C, q, r, s, ...
+Where Var is a single single letter: A, B, C, a, b, c, ...
 
 ## Supported formula syntax (examples)
 
