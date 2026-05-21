@@ -23,3 +23,13 @@ let toStringPrettyBB (b: BeliefBase) =
         let temp = b |> Set.map (fun (f, _) -> toStringF f) |> String.concat ", "
 
         "{ " + temp + " }"
+
+let toStringBBSet (bbs: Set<BeliefBase>) =
+    if Set.isEmpty bbs then
+        "[]"
+    else
+        bbs
+        |> Seq.map toStringBB
+        |> Seq.map (fun s -> "  " + s)
+        |> String.concat "\n"
+        |> fun inner -> "[\n" + inner + "\n]"

@@ -66,9 +66,10 @@ let entails (kb: BeliefBase) f =
     else
         let kbf = beliefBaseToFormula kb
         let kbcnf = toCNF kbf
+        printfn "CNF for knowledge base: %s" (toStringF kbcnf)
         let notfcnf = toCNF (Not f)
         let cnfContradiction = And(kbcnf, notfcnf)
-        //printfn "cnf for contradiction: %s" (toStringF cnfContradiction)
+        printfn "CNF for contradiction: %s" (toStringF cnfContradiction)
         let clauses = toClauses cnfContradiction
-        //printfn "clauses: %A" clauses
+        printfn "Clauses: %A" clauses
         resolution clauses

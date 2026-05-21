@@ -20,7 +20,7 @@ let contraction kb f =
         kb
     else
         let maximalSubsets = maximalSubsets kb f
-        //printfn "Max: %A" maximalSubsets
+        printfn "Maximal subsets:\n%s" (toStringBBSet maximalSubsets)
         maximalSubsets |> Seq.maxBy (Seq.sumBy snd)
 
 let expansion kb (f, p) : BeliefBase =
@@ -28,5 +28,5 @@ let expansion kb (f, p) : BeliefBase =
     | None -> kb |> Set.add (f, p)
     | Some(_, oldP) -> kb |> Set.remove (f, oldP) |> Set.add (f, p)
 
-let revision kb (f, p) = 
+let revision kb (f, p) =
     expansion (contraction kb (Not f)) (f, p)
